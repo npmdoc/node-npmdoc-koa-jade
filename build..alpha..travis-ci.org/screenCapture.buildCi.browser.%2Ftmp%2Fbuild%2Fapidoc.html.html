@@ -1,0 +1,257 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/chrisyip/koa-jade">koa-jade (v2.1.0)</a>
+</h1>
+<h4>A Jade middleware for Koa</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.koa-jade">module koa-jade</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.koa-jade.koa-jade">
+            function <span class="apidocSignatureSpan"></span>koa-jade
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">koa-jade.</span>version</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.koa-jade" id="apidoc.module.koa-jade">module koa-jade</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.koa-jade.koa-jade" id="apidoc.element.koa-jade.koa-jade">
+        function <span class="apidocSignatureSpan"></span>koa-jade
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Jade(options) {
+  var defaultOptions = {
+    compileDebug: false,
+    pretty: false
+  }
+  var globalNoCache = false
+  var compilers = new Map()
+  var defaultLocals = {}
+  var viewPath
+  var helpers = {}
+
+  function compileFile (tpl, locals, compileOptions, skipCache) {
+    var tplPath, rawJade, compiler
+
+    if (_.endsWith(tpl, '.jade')) {
+      tplPath = path.resolve(viewPath, tpl)
+    } else {
+      // If view path doesn't end with `.jade`, add `.jade` and check if it exists
+      var dirname = path.resolve(viewPath, tpl)
+      tplPath = dirname + '.jade'
+
+      // If doesn't exist and the dirname is a folder, then search `index.jade` file
+      if (!fs.existsSync(tplPath)) {
+        var stat = fs.statSync(dirname)
+        if (stat.isDirectory()) {
+          tplPath = path.resolve(dirname, 'index.jade')
+        }
+      }
+    }
+
+    rawJade = fs.readFileSync(tplPath)
+
+    compileOptions.filename = tplPath
+
+    if (skipCache) {
+      compiler = jade.compile(rawJade, compileOptions)
+    } else {
+      compiler = compilers.get(tplPath)
+
+      if (!compiler) {
+        compiler = jade.compile(rawJade, compileOptions)
+        compilers.set(tplPath, compiler)
+      }
+    }
+
+    return compiler(locals)
+  }
+
+  function compileString (tpl, locals, compileOptions) {
+    return jade.compile(tpl, compileOptions)(locals)
+  }
+
+<span class="apidocCodeCommentSpan">  /**
+   * @param {String}  tpl     the template path, search start from viewPath
+   * @param {Object}  locals  locals that pass to Jade compiler, merged with global locals
+   * @param {Object}  options options that pass to Jade compiler, merged with global default options
+   * @param {Boolean} noCache use cache or not
+   */
+</span>  function renderer (tpl, locals, options, noCache) {
+    var compileOptions = _.merge({}, defaultOptions)
+
+    if (_.isPlainObject(options)) {
+      _.merge(compileOptions, options)
+    }
+
+    var finalLocals = _.merge({}, helpers, defaultLocals, this.state, locals)
+
+    if (compileOptions.fromString) {
+      this.body = compileString(tpl, finalLocals, compileOptions)
+    } else {
+      var skipCache
+
+      if (_.isBoolean(options)) {
+        skipCache = options
+      } else {
+        skipCache = _.isBoolean(noCache) ? noCache : globalNoCache
+      }
+
+      this.body = compileFile(tpl, finalLocals, compileOptions, skipCache)
+    }
+
+    this.type = 'text/html'
+    return this
+  }
+
+  Object.defineProperties(this, {
+    use: {
+      enumerable: true,
+      value: function (app) {
+        app.context.render = renderer
+      }
+    },
+
+    middleware: {
+      enumerable: true,
+      value: function* (next) {
+        this.render = renderer
+        yield next
+      }
+    },
+
+    /* Configuration */
+    options: {
+      enumerable: true,
+      get: function () {
+        return defaultOptions
+      },
+      set: function (options) {
+        if (!_.isPlainObject(options)) {
+          return
+        }
+
+        if (_.isEmpty(options)) {
+          defaultOptions = {}
+          return
+        }
+
+        viewPath = _.isString(options.viewPath) ? options.viewPath : rootPath
+
+        if (_.isPlainObject(options.locals)) {
+          defaultLocals = options.locals
+        }
+
+        if (_.isBoolean(options.noCache)) {
+          globalNoCache = options.noCache
+        }
+
+        if (_.isString(options.helperPath) || _.isArray(options.helperPath)) {
+          _.merge(helpers, loadHelpers(options.helperPath))
+        }
+
+        if (_.isBoolean(options.debug)) {
+          defaultOptions.pretty = options.debug
+          defaultOptions.compileDebug = options.debug
+        } else {
+          _.forIn(defaultOptions, function (value, key) {
+            if (key in options &amp;&amp; _.isBoolean(options[key])) {
+              defaultOptions[key] = options[key]
+            }
+          })
+        }
+
+        if (_.isString(options.basedir)) {
+          defaultOptions.basedir = options.basedir
+        }
+
+        if (options.app &amp;&amp; options.app.constructor.name === 'Application') {
+          this.use(options.app)
+        }
+      }
+    },
+
+    locals: {
+      enumerable: true,
+      get: function () {
+        return defaultLoc ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>

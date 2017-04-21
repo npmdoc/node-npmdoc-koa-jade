@@ -1,0 +1,72 @@
+<svg height="1102" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="1102" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26">10 megabytes installed</tspan>
+<tspan x="10" y="42"></tspan>
+<tspan x="10" y="58">node_modules</tspan>
+<tspan x="10" y="74">└─┬ koa-jade@2.1.0 </tspan>
+<tspan x="10" y="90">  ├─┬ fs-extra@0.24.0 </tspan>
+<tspan x="10" y="106">  │ ├── graceful-fs@4.1.11 </tspan>
+<tspan x="10" y="122">  │ ├── jsonfile@2.4.0 </tspan>
+<tspan x="10" y="138">  │ ├── path-is-absolute@1.0.1 </tspan>
+<tspan x="10" y="154">  │ └─┬ rimraf@2.6.1 </tspan>
+<tspan x="10" y="170">  │   └─┬ glob@7.1.1 </tspan>
+<tspan x="10" y="186">  │     ├── fs.realpath@1.0.0 </tspan>
+<tspan x="10" y="202">  │     ├─┬ inflight@1.0.6 </tspan>
+<tspan x="10" y="218">  │     │ └── wrappy@1.0.2 </tspan>
+<tspan x="10" y="234">  │     ├── inherits@2.0.3 </tspan>
+<tspan x="10" y="250">  │     ├─┬ minimatch@3.0.3 </tspan>
+<tspan x="10" y="266">  │     │ └─┬ brace-expansion@1.1.7 </tspan>
+<tspan x="10" y="282">  │     │   ├── balanced-match@0.4.2 </tspan>
+<tspan x="10" y="298">  │     │   └── concat-map@0.0.1 </tspan>
+<tspan x="10" y="314">  │     └── once@1.4.0 </tspan>
+<tspan x="10" y="330">  ├─┬ jade@1.11.0 </tspan>
+<tspan x="10" y="346">  │ ├── character-parser@1.2.1 </tspan>
+<tspan x="10" y="362">  │ ├─┬ clean-css@3.4.25 </tspan>
+<tspan x="10" y="378">  │ │ ├─┬ commander@2.8.1 </tspan>
+<tspan x="10" y="394">  │ │ │ └── graceful-readlink@1.0.1 </tspan>
+<tspan x="10" y="410">  │ │ └─┬ source-map@0.4.4 </tspan>
+<tspan x="10" y="426">  │ │   └── amdefine@1.0.1 </tspan>
+<tspan x="10" y="442">  │ ├── commander@2.6.0 </tspan>
+<tspan x="10" y="458">  │ ├─┬ constantinople@3.0.2 </tspan>
+<tspan x="10" y="474">  │ │ └── acorn@2.7.0 </tspan>
+<tspan x="10" y="490">  │ ├─┬ jstransformer@0.0.2 </tspan>
+<tspan x="10" y="506">  │ │ ├── is-promise@2.1.0 </tspan>
+<tspan x="10" y="522">  │ │ └─┬ promise@6.1.0 </tspan>
+<tspan x="10" y="538">  │ │   └── asap@1.0.0 </tspan>
+<tspan x="10" y="554">  │ ├─┬ mkdirp@0.5.1 </tspan>
+<tspan x="10" y="570">  │ │ └── minimist@0.0.8 </tspan>
+<tspan x="10" y="586">  │ ├─┬ transformers@2.1.0 </tspan>
+<tspan x="10" y="602">  │ │ ├─┬ css@1.0.8 </tspan>
+<tspan x="10" y="618">  │ │ │ ├── css-parse@1.0.4 </tspan>
+<tspan x="10" y="634">  │ │ │ └── css-stringify@1.0.5 </tspan>
+<tspan x="10" y="650">  │ │ ├─┬ promise@2.0.0 </tspan>
+<tspan x="10" y="666">  │ │ │ └── is-promise@1.0.1 </tspan>
+<tspan x="10" y="682">  │ │ └─┬ uglify-js@2.2.5 </tspan>
+<tspan x="10" y="698">  │ │   ├─┬ optimist@0.3.7 </tspan>
+<tspan x="10" y="714">  │ │   │ └── wordwrap@0.0.3 </tspan>
+<tspan x="10" y="730">  │ │   └── source-map@0.1.43 </tspan>
+<tspan x="10" y="746">  │ ├─┬ uglify-js@2.8.22 </tspan>
+<tspan x="10" y="762">  │ │ ├── source-map@0.5.6 </tspan>
+<tspan x="10" y="778">  │ │ ├── uglify-to-browserify@1.0.2 </tspan>
+<tspan x="10" y="794">  │ │ └─┬ yargs@3.10.0 </tspan>
+<tspan x="10" y="810">  │ │   ├── camelcase@1.2.1 </tspan>
+<tspan x="10" y="826">  │ │   ├─┬ cliui@2.1.0 </tspan>
+<tspan x="10" y="842">  │ │   │ ├─┬ center-align@0.1.3 </tspan>
+<tspan x="10" y="858">  │ │   │ │ ├─┬ align-text@0.1.4 </tspan>
+<tspan x="10" y="874">  │ │   │ │ │ ├─┬ kind-of@3.1.0 </tspan>
+<tspan x="10" y="890">  │ │   │ │ │ │ └── is-buffer@1.1.5 </tspan>
+<tspan x="10" y="906">  │ │   │ │ │ ├── longest@1.0.1 </tspan>
+<tspan x="10" y="922">  │ │   │ │ │ └── repeat-string@1.6.1 </tspan>
+<tspan x="10" y="938">  │ │   │ │ └── lazy-cache@1.0.4 </tspan>
+<tspan x="10" y="954">  │ │   │ ├── right-align@0.1.3 </tspan>
+<tspan x="10" y="970">  │ │   │ └── wordwrap@0.0.2 </tspan>
+<tspan x="10" y="986">  │ │   ├── decamelize@1.2.0 </tspan>
+<tspan x="10" y="1002">  │ │   └── window-size@0.1.0 </tspan>
+<tspan x="10" y="1018">  │ ├── void-elements@2.0.1 </tspan>
+<tspan x="10" y="1034">  │ └─┬ with@4.0.3 </tspan>
+<tspan x="10" y="1050">  │   ├── acorn@1.2.2 </tspan>
+<tspan x="10" y="1066">  │   └── acorn-globals@1.0.9 </tspan>
+<tspan x="10" y="1082">  └── lodash@3.10.1</tspan>
+</text>
+</svg>
